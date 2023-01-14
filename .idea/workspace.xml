@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99f406ed-a29d-47de-9dbc-4266302cf630" name="Changes" comment="Rewrite sql query with Spring JDBC">
-      <change afterPath="$PROJECT_DIR$/src/main/java/university/app/dao/artistMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Interfaces/artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Interfaces/artist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Interfaces/artistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Interfaces/artistRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Services/Exceptions/LocaleNotSupportedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Services/Exceptions/LocaleNotSupportedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Services/JDBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Services/JDBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Services/LocaleIfService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Services/LocaleIfService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Services/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Services/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/university/app/Services/artistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/Services/artistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/university/app/dao/artistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/university/app/dao/artistDAO.java" afterDir="false" />
@@ -112,7 +108,7 @@
       <updated>1673599532047</updated>
       <workItem from="1673599534424" duration="1383000" />
       <workItem from="1673601002024" duration="1932000" />
-      <workItem from="1673603654643" duration="21981000" />
+      <workItem from="1673603654643" duration="32155000" />
     </task>
     <task id="LOCAL-00001" summary="Were we stop last time?">
       <created>1673601972398</created>
@@ -121,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673601972398</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Rewrite sql query with Spring JDBC">
+      <created>1673656984416</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673656984416</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

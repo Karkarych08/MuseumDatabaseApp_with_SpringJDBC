@@ -59,12 +59,21 @@ public class artistRepositoryImpl implements artistRepository {
     }
 
     @Override
-    public void update(artistDAO artist) {
-
+    public void update(long id, String firstname, String secondname, String familyname, java.util.Date dateofbirth, String country, java.util.Date dateofdeath){
+        MapSqlParameterSource map = new MapSqlParameterSource(Map.of(
+                "id",id,
+                "secondname",secondname,
+                "firstname",firstname,
+                "familyname",familyname,
+                "dateofbirth",dateofbirth,
+                "country",country,
+                "dateofdeath",dateofdeath));
+        jdbConnect.getJdbc().update("UPDATE artist set (secondname,firstname,familyname,dateofbirth,country,dateofdeath) =" +
+                " (:secondname,:firstname,:familyname,:dateofbirth,:country,:dateofdeath) where \"id\"=:id ",map);
     }
 
     @Override
-    public void deletebyId(artistDAO artist) {
-
+    public void deletebyId(long id) {
+        jdbConnect.getJdbc().update("DELETE FROM artist where \"id\" = :id",Map.of("id",id));
     }
 }

@@ -9,6 +9,7 @@ import university.app.dao.artistDAO;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -42,13 +43,13 @@ public class artistService implements artist {
     }
 
     @Override
-    public void update(artistDAO artist) {
-
+    public void update(long id, String firstname, String secondname, String familyname, Date dateofbirth, String country, Date dateofdeath){
+        aRep.update(id,firstname, secondname, familyname, dateofbirth, country, dateofdeath);
     }
 
     @Override
-    public void deletebyId(artistDAO artist) {
-
+    public void deletebyId(long id) {
+        aRep.deletebyId(id);
     }
 
 }
