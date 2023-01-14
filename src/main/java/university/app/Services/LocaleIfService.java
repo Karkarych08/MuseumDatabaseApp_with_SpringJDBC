@@ -20,7 +20,7 @@ public class LocaleIfService implements Locale_If {
     public void set(String locale) throws LocaleNotSupportedException {
         var loc = SUPPORTED.get(locale);
         if (loc == null)
-            throw new LocaleNotSupportedException("locale-not-supported", locale);
+            throw new LocaleNotSupportedException();
         current = loc;
 
     }

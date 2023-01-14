@@ -1,19 +1,18 @@
 package university.app.Services;
 
 import lombok.Getter;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @Service
 public class JDBConnect {
-
     @Getter
-    Connection connection;
+    final NamedParameterJdbcOperations jdbc;
 
-    public JDBConnect(DataSource dataSource) throws SQLException {
-        this.connection = dataSource.getConnection();
+    public JDBConnect(DataSource dataSource) {
+        this.jdbc = new NamedParameterJdbcTemplate(dataSource);
     }
 }

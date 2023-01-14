@@ -2,18 +2,17 @@ package university.app.repositoty;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import university.app.Interfaces.artistRepository;
 import university.app.Services.JDBConnect;
 import university.app.dao.artistDAO;
+import university.app.dao.artistMapper;
 
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
+import java.util.*;
 
 
 @Repository
@@ -23,57 +22,49 @@ public class artistRepositoryImpl implements artistRepository {
 
     private final JDBConnect jdbConnect;
 
+    private final artistMapper artistMapper;
+
 
     @Override
-    public Collection<artistDAO> findOlderThenDate(Calendar date) throws SQLException {
-        ResultSet resultSet;
-        try (PreparedStatement prepareStatement = jdbConnect.getConnection().prepareStatement("SELECT * FROM artist where dateofbirth>?")) {
-            prepareStatement.setDate(1, new Date(date.getTime().getTime()));
-            resultSet = prepareStatement.executeQuery();
-        }
-        return getArtistDAOS(resultSet);
+    public Collection<artistDAO> findOlderThenDate(Calendar date) {
+        return jdbConnect.getJdbc().query("SELECT * FROM artist where dateofbirth>:date", Map.of("date",date),artistMapper);
     }
 
     @Override
-    public Collection<artistDAO> findAll() throws SQLException {
-        try (ResultSet resultSet = jdbConnect.getConnection().createStatement().executeQuery("SELECT * FROM artist")) {
-            return getArtistDAOS(resultSet);
-        }
+    public Collection<artistDAO> findAll(){
+        return jdbConnect.getJdbc().query("SELECT * FROM artist", artistMapper);
     }
 
     @Override
-    public Collection<artistDAO> findAllByCountry(String country) throws SQLException {
-        ResultSet resultSet;
-        try (PreparedStatement prepareStatement = jdbConnect.getConnection().prepareStatement("SELECT * FROM artist where country=?")) {
-            prepareStatement.setString(1, country);
-            resultSet = prepareStatement.executeQuery();
-        }
-        return getArtistDAOS(resultSet);
-    }
-
-    private Collection<artistDAO> getArtistDAOS(ResultSet resultSet) throws SQLException {
-        ArrayList<artistDAO> artists = new ArrayList<>();
-        while (resultSet.next()){
-            artistDAO artist = new artistDAO(
-                    resultSet.getInt("id"),
-                    resultSet.getString("firstname"),
-                    resultSet.getString("secondname"),
-                    resultSet.getString("familyname"),
-                    resultSet.getDate("dateofbirth"),
-                    resultSet.getString("country"),
-                    resultSet.getDate("dateofdeath"));
-            artists.add(artist);
-        }
-        return artists;
+    public Collection<artistDAO> findAllByCountry(String country){
+        return jdbConnect.getJdbc().query("SELECT * FROM artist where country=:country", Map.of("country",country),artistMapper);
     }
 
     @Override
-    public Collection<artistDAO> findById(long id) throws SQLException {
-        ResultSet resultSet;
-        try (PreparedStatement prepareStatement = jdbConnect.getConnection().prepareStatement("SELECT * FROM artist where id=?")) {
-            prepareStatement.setLong(1, id);
-            resultSet = prepareStatement.executeQuery();
-        }
-        return getArtistDAOS(resultSet);
+    public Collection<artistDAO> findById(long id){
+        return jdbConnect.getJdbc().query("SELECT * FROM artist where id=:id", Map.of("id",id),artistMapper);
+    }
+
+    @Override
+    public void insert(String firstname, String secondname, String familyname, Calendar dateofbirth, String country, Calendar dateofdeath) {
+        KeyHolder kh = new GeneratedKeyHolder();
+        MapSqlParameterSource map = new MapSqlParameterSource(Map.of("secondname",secondname,
+                "firstname",firstname,
+                "familyname",familyname,
+                "dateofbirth",new Date(dateofbirth.getTimeInMillis()),
+                "country",country,
+                "dateofdeath",new Date(dateofdeath.getTimeInMillis())));
+        jdbConnect.getJdbc().update("INSERT INTO artist (secondname,firstname,familyname,dateofbirth,country,dateofdeath) " +
+                        "VALUES (:secondname,:firstname,:familyname,:dateofbirth,:country,:dateofdeath)",map,kh);
+    }
+
+    @Override
+    public void update(artistDAO artist) {
+
+    }
+
+    @Override
+    public void deletebyId(artistDAO artist) {
+
     }
 }

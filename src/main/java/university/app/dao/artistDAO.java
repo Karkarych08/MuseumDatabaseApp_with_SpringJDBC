@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class artistDAO {
-    private Integer id;
+    Integer id;
     String firstname;
     String secondname;
     String familyname;
